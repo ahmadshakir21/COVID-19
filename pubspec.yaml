@@ -34,6 +34,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -58,9 +59,51 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/algeria.png
+    - assets/images/austria.png
+    - assets/images/azerbaijan.png
+    - assets/images/bahrain.png
+    - assets/images/belgium.png
+    - assets/images/brazil.png
+    - assets/images/bulgaria.png
+    - assets/images/canada.png
+    - assets/images/china.png
+    - assets/images/czech-republic.png
+    - assets/images/denmark.png
+    - assets/images/england.png
+    - assets/images/finland.png
+    - assets/images/france.png
+    - assets/images/germany.png
+    - assets/images/honduras.png
+    - assets/images/india.png
+    - assets/images/iran.png
+    - assets/images/italy.png
+    - assets/images/japan.png
+    - assets/images/luxembourg.png
+    - assets/images/malaysia.png
+    - assets/images/netherlands.png
+    - assets/images/nigeria.png
+    - assets/images/norway.png
+    - assets/images/pakistan.png
+    - assets/images/palestine.png
+    - assets/images/philippines.png
+    - assets/images/poland.png
+    - assets/images/portugal.png
+    - assets/images/romania.png
+    - assets/images/russia.png
+    - assets/images/saudi-arabia.png
+    - assets/images/serbia.png
+    - assets/images/singapore.png
+    - assets/images/slovakia.png
+    - assets/images/slovenia.png
+    - assets/images/south-korea.png
+    - assets/images/spain.png
+    - assets/images/sweden.png
+    - assets/images/switzerland.png
+    - assets/images/turkey.png
+    - assets/images/united-states.png
+    - assets/images/vietnam.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
