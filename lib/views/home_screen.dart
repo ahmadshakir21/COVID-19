@@ -1,3 +1,4 @@
+import 'package:covid_19/model/country_dummy_data.dart';
 import 'package:covid_19/model/covid_model.dart';
 import 'package:covid_19/service/covid_service.dart';
 import 'package:covid_19/views/detail_country_info.dart';
@@ -56,58 +57,72 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("COVID 19"),
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Container(
+              height: 100,
+            ),
+            Expanded(
+              child: FutureBuilder<List<CovidModel>>(
+                  future: covidService.fetchCovidData(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text(snapshot.error.toString()),
+                      );
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (!snapshot.hasData) {
+                      return const Center(
+                        child: Text("No Data"),
+                      );
+                    }
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => DetailCountryInfo(
+                                country: snapshot.data![index].country!,
+                                imageUrl: countryFlagList[index],
+                                infected: snapshot.data![index].infected,
+                                tested: snapshot.data![index].tested,
+                                recovered: snapshot.data![index].recovered,
+                                deceased: snapshot.data![index].deceased,
+                                countryDummyDataVariable:
+                                    countryDummyData[index],
+                              ),
+                            ));
+                          },
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.85,
+                            height: 75,
+                            child: Card(
+                                child: ListTile(
+                              leading: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: Image(
+                                    image: AssetImage(countryFlagList[index])),
+                              ),
+                              title: Text(snapshot.data![index].country!),
+                              trailing: Text(
+                                  snapshot.data![index].infected.toString()),
+                            )),
+                          ),
+                        );
+                      },
+                    );
+                  }),
+            ),
+          ],
+        ),
       ),
-      body: FutureBuilder<List<CovidModel>>(
-          future: covidService.fetchCovidData(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Center(
-                child: Text(snapshot.error.toString()),
-              );
-            } else if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.data == null) {
-              return const Center(
-                child: Text("No Data"),
-              );
-            }
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => DetailCountryInfo(
-                          country: snapshot.data![index].country!,
-                          imageUrl: countryFlagList[index],
-                          infected: snapshot.data![index].infected,
-                          tested: snapshot.data![index].tested,
-                          recovered: snapshot.data![index].recovered,
-                          deceased: snapshot.data![index].deceased),
-                    ));
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.85,
-                    height: 75,
-                    child: Card(
-                        child: ListTile(
-                      leading: Container(
-                        width: 50,
-                        height: 50,
-                        child: Image(image: AssetImage(countryFlagList[index])),
-                      ),
-                      title: Text(snapshot.data![index].country!),
-                      trailing: Text(snapshot.data![index].infected.toString()),
-                    )),
-                  ),
-                );
-              },
-            );
-          }),
     );
   }
 }

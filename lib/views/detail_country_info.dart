@@ -1,5 +1,4 @@
 import 'package:covid_19/model/covid_model.dart';
-import 'package:covid_19/model/more_data_model.dart';
 import 'package:covid_19/service/covid_service.dart';
 import 'package:covid_19/service/more_data_covid_service.dart';
 import 'package:covid_19/widget/custom_container.dart';
@@ -60,116 +59,68 @@ class DetailCountryInfo extends StatelessWidget {
   dynamic tested;
   dynamic recovered;
   dynamic deceased;
+  String? countryDummyDataVariable;
 
-  DetailCountryInfo(
-      {required this.country,
-      required this.imageUrl,
-      required this.infected,
-      this.tested,
-      this.recovered,
-      this.deceased});
-
-  MoreDataCovidService moreDataCovidService = MoreDataCovidService();
+  DetailCountryInfo({
+    required this.country,
+    required this.imageUrl,
+    required this.infected,
+    this.tested,
+    this.recovered,
+    this.deceased,
+    this.countryDummyDataVariable,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: Padding(
+        child: Scaffold(
+      body: Padding(
           padding: const EdgeInsets.all(10),
-          child: FutureBuilder<MoreDataModel>(
-            future: moreDataCovidService.fetchDataMoreDataCovid(),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Center(
-                  child: Text(snapshot.error.toString()),
-                );
-              } else if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (snapshot.data == null) {
-                return const Center(
-                  child: Text("No Data"),
-                );
-              }
-              return SingleChildScrollView(
-                child: Column(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 200, child: Image.asset(imageUrl)),
+                Center(child: Text(country)),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(height: 200, child: Image.asset(imageUrl)),
-                    Center(child: Text(country)),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomContainer(
-                            color: Colors.pink,
-                            covidCase: "Infected",
-                            infected: '$infected'),
-                        CustomContainer(
-                            color: Colors.blueAccent,
-                            covidCase: "Recovered",
-                            infected: '$recovered'),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomContainer(
-                            color: Colors.green,
-                            covidCase: "Tested",
-                            infected: '$tested'),
-                        CustomContainer(
-                            color: Colors.amber,
-                            covidCase: "Deceased",
-                            infected: '$deceased'),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      height: 500,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: snapshot.data!.infectedByRegion.length,
-                        itemBuilder: (context, index) => Card(
-                          margin: const EdgeInsets.all(15),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(
-                                      'Region : ${snapshot.data!.infectedByRegion[index].region}'),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(
-                                      'Infected Count ${snapshot.data!.infectedByRegion[index].infectedCount}'),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(
-                                      'DeceasedCount ${snapshot.data!.infectedByRegion[index].deceasedCount}'),
-                                ),
-                              ]),
-                        ),
-                      ),
-                    ),
+                    CustomContainer(
+                        color: Colors.pink,
+                        covidCase: "Infected",
+                        infected: '$infected'),
+                    CustomContainer(
+                        color: Colors.blueAccent,
+                        covidCase: "Recovered",
+                        infected: '$recovered'),
                   ],
                 ),
-              );
-            },
-          ),
-        ),
-      ),
-    );
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomContainer(
+                        color: Colors.green,
+                        covidCase: "Tested",
+                        infected: '$tested'),
+                    CustomContainer(
+                        color: Colors.amber,
+                        covidCase: "Deceased",
+                        infected: '$deceased'),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(child: Text(countryDummyDataVariable!)),
+              ],
+            ),
+          )),
+    ));
   }
 }
