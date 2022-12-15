@@ -18,8 +18,14 @@ class CustomContainer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(covidCase),
-          Text('$infected'),
+          Text(
+            covidCase,
+            style: Theme.of(context).textTheme.headline1,
+          ),
+          Text(
+            '$infected',
+            style: Theme.of(context).textTheme.headline1,
+          ),
         ],
       ),
     );

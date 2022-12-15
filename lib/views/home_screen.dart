@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 class HomeScreen extends StatelessWidget {
   CovidService covidService = CovidService();
 
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   List countryFlagList = [
     "assets/images/algeria.png",
     "assets/images/austria.png",
@@ -59,10 +61,113 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: scaffoldKey,
+        drawer: Drawer(
+          child: ListView(children: [
+            /////////////////////////////////////////////////
+            DrawerHeader(
+              decoration: const BoxDecoration(
+                color: Color(0xFF05445E),
+              ),
+              child: Row(
+                children: [
+                  Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Container(
+                        height: 85,
+                        width: 85,
+                        margin: const EdgeInsets.only(right: 10),
+                        decoration: BoxDecoration(
+                            color: const Color(0xFFD4F1F4),
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.add_box_rounded,
+                            color: Color(0xFF05445E),
+                          )),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Ahmad Shakir",
+                        style: Theme.of(context).textTheme.headline1!.copyWith(
+                            fontSize: 18, color: const Color(0xFFD4F1F4)),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "ahmad.shakir@gmail.com",
+                        style: Theme.of(context).textTheme.headline1!.copyWith(
+                            fontSize: 14, color: const Color(0xFFD4F1F4)),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            ////////////////////////////////////////////////
+          ]),
+        ),
         body: Column(
           children: [
             Container(
-              height: 100,
+              height: 175,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          scaffoldKey.currentState!.openDrawer();
+                        },
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          margin: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: const Icon(
+                            Icons.menu_rounded,
+                            size: 47,
+                            color: Color(0xFF05445E),
+                          ),
+                        ),
+                      ),
+                      Text("Home",
+                          style: Theme.of(context).textTheme.headline3),
+                      Container(
+                        height: 50,
+                        width: 50,
+                        margin: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: const Color(0xFF05445E),
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                    ],
+                  ),
+                  //TODO: fetch name of user
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      "Hello",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline1!
+                          .copyWith(fontSize: 22),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Expanded(
               child: FutureBuilder<List<CovidModel>>(
@@ -70,14 +175,16 @@ class HomeScreen extends StatelessWidget {
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return Center(
-                        child: Text(snapshot.error.toString()),
+                        child: Text(snapshot.error.toString(),
+                            style: Theme.of(context).textTheme.headline2),
                       );
                     } else if (snapshot.connectionState ==
                         ConnectionState.waiting) {
                       return const Center(child: CircularProgressIndicator());
                     } else if (!snapshot.hasData) {
-                      return const Center(
-                        child: Text("No Data"),
+                      return Center(
+                        child: Text("No Data",
+                            style: Theme.of(context).textTheme.headline2),
                       );
                     }
                     return ListView.builder(
@@ -103,6 +210,7 @@ class HomeScreen extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.85,
                             height: 75,
                             child: Card(
+                                // color: Color.fromARGB(255, 226, 247, 250),
                                 child: ListTile(
                               leading: SizedBox(
                                 width: 50,
@@ -110,9 +218,11 @@ class HomeScreen extends StatelessWidget {
                                 child: Image(
                                     image: AssetImage(countryFlagList[index])),
                               ),
-                              title: Text(snapshot.data![index].country!),
+                              title: Text(snapshot.data![index].country!,
+                                  style: Theme.of(context).textTheme.headline1),
                               trailing: Text(
-                                  snapshot.data![index].infected.toString()),
+                                  snapshot.data![index].infected.toString(),
+                                  style: Theme.of(context).textTheme.headline1),
                             )),
                           ),
                         );

@@ -80,20 +80,19 @@ class DetailCountryInfo extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 200, child: Image.asset(imageUrl)),
-                Center(child: Text(country)),
+                SizedBox(height: 175, child: Image.asset(imageUrl)),
                 const SizedBox(
-                  height: 30,
+                  height: 40,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomContainer(
-                        color: Colors.pink,
+                        color: const Color(0xFFE4B7A0),
                         covidCase: "Infected",
                         infected: '$infected'),
                     CustomContainer(
-                        color: Colors.blueAccent,
+                        color: const Color(0xFF74BDCB),
                         covidCase: "Recovered",
                         infected: '$recovered'),
                   ],
@@ -105,19 +104,30 @@ class DetailCountryInfo extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomContainer(
-                        color: Colors.green,
+                        color: const Color(0xFF3EB489),
                         covidCase: "Tested",
                         infected: '$tested'),
                     CustomContainer(
-                        color: Colors.amber,
+                        color: const Color(0xFFEF7C8E),
                         covidCase: "Deceased",
                         infected: '$deceased'),
                   ],
                 ),
                 const SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  country,
+                  style: Theme.of(context).textTheme.headline3,
+                ),
+                const SizedBox(
                   height: 20,
                 ),
-                SizedBox(child: Text(countryDummyDataVariable!)),
+                SizedBox(
+                    child: Text(
+                  countryDummyDataVariable!,
+                  style: Theme.of(context).textTheme.bodyText1,
+                )),
               ],
             ),
           )),
