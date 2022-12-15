@@ -1,7 +1,10 @@
 import 'package:covid_19/model/country_dummy_data.dart';
 import 'package:covid_19/model/covid_model.dart';
 import 'package:covid_19/service/covid_service.dart';
+import 'package:covid_19/views/covid_19.dart';
 import 'package:covid_19/views/detail_country_info.dart';
+import 'package:covid_19/views/rate_us.dart';
+import 'package:covid_19/widget/drawer_item.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -112,7 +115,26 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+
             ////////////////////////////////////////////////
+            DrawerItem(
+                icon: Icons.sick_outlined,
+                text: "Covid_19",
+                onClick: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const Covid19(),
+                  ));
+                }),
+            DrawerItem(
+                icon: Icons.star_border_rounded,
+                text: "Rate Us",
+                onClick: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const RateUs(),
+                  ));
+                }),
+            DrawerItem(
+                icon: Icons.logout_rounded, text: "Logout", onClick: () {}),
           ]),
         ),
         body: Column(
@@ -133,22 +155,25 @@ class HomeScreen extends StatelessWidget {
                         child: Container(
                           height: 50,
                           width: 50,
-                          margin: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.only(left: 10),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10)),
                           child: const Icon(
                             Icons.menu_rounded,
-                            size: 47,
+                            size: 40,
                             color: Color(0xFF05445E),
                           ),
                         ),
                       ),
                       Text("Home",
-                          style: Theme.of(context).textTheme.headline3),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline1!
+                              .copyWith(fontSize: 20)),
                       Container(
                         height: 50,
                         width: 50,
-                        margin: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.only(right: 10),
                         decoration: BoxDecoration(
                             color: const Color(0xFF05445E),
                             borderRadius: BorderRadius.circular(10)),
