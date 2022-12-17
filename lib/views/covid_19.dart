@@ -1,3 +1,5 @@
+import 'package:covid_19/model/covid_19_dummy_data.dart';
+import 'package:covid_19/widget/top_of_screen.dart';
 import 'package:flutter/material.dart';
 
 class Covid19 extends StatelessWidget {
@@ -8,51 +10,54 @@ class Covid19 extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
             body: Padding(
-                padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
-                child: SingleChildScrollView(
-                    child: Column(children: [
-                  SizedBox(
-                    height: 100,
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                margin: const EdgeInsets.only(left: 10),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: const Icon(
-                                  Icons.arrow_back_rounded,
-                                  size: 40,
-                                  color: Color(0xFF05445E),
-                                ),
-                              ),
-                            ),
-                            Text("Covid 19",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline1!
-                                    .copyWith(fontSize: 20)),
-                            Container(
-                              height: 50,
-                              width: 50,
-                              margin: const EdgeInsets.only(right: 10),
-                              decoration: BoxDecoration(
-                                  color: const Color(0xFF05445E),
-                                  borderRadius: BorderRadius.circular(10)),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ])))));
+      padding: const EdgeInsets.all(10),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TopOfScreen(
+                iconData: Icons.arrow_back_rounded,
+                title: "Covid_19",
+                onClick: Navigator.of(context).pop),
+            Text(
+              Covid19Dummy.covid19Title,
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(Covid19Dummy.covid19,
+                style: Theme.of(context).textTheme.bodyText1),
+            const SizedBox(
+              height: 23,
+            ),
+            Text(
+              Covid19Dummy.etymology,
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(Covid19Dummy.etymologyDis,
+                style: Theme.of(context).textTheme.bodyText1),
+            const SizedBox(
+              height: 23,
+            ),
+            Text(
+              Covid19Dummy.deaths,
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(Covid19Dummy.deathsDis,
+                style: Theme.of(context).textTheme.bodyText1),
+            const SizedBox(
+              height: 23,
+            ),
+          ],
+        ),
+      ),
+    )));
   }
 }

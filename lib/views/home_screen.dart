@@ -5,6 +5,7 @@ import 'package:covid_19/views/covid_19.dart';
 import 'package:covid_19/views/detail_country_info.dart';
 import 'package:covid_19/views/rate_us.dart';
 import 'package:covid_19/widget/drawer_item.dart';
+import 'package:covid_19/widget/top_of_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -137,125 +138,84 @@ class HomeScreen extends StatelessWidget {
                 icon: Icons.logout_rounded, text: "Logout", onClick: () {}),
           ]),
         ),
-        body: Column(
-          children: [
-            Container(
-              height: 175,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          scaffoldKey.currentState!.openDrawer();
-                        },
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          margin: const EdgeInsets.only(left: 10),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10)),
-                          child: const Icon(
-                            Icons.menu_rounded,
-                            size: 40,
-                            color: Color(0xFF05445E),
-                          ),
-                        ),
-                      ),
-                      Text("Home",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline1!
-                              .copyWith(fontSize: 20)),
-                      Container(
-                        height: 50,
-                        width: 50,
-                        margin: const EdgeInsets.only(right: 10),
-                        decoration: BoxDecoration(
-                            color: const Color(0xFF05445E),
-                            borderRadius: BorderRadius.circular(10)),
-                      ),
-                    ],
-                  ),
-                  //TODO: fetch name of user
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Text(
-                      "Hello",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline1!
-                          .copyWith(fontSize: 22),
-                    ),
-                  ),
-                ],
+        body: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Container(
+                height: 100,
+                child: TopOfScreen(
+                  iconData: Icons.menu_rounded,
+                  title: "Home",
+                  onClick: () => scaffoldKey.currentState!.openDrawer(),
+                ),
               ),
-            ),
-            Expanded(
-              child: FutureBuilder<List<CovidModel>>(
-                  future: covidService.fetchCovidData(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      return Center(
-                        child: Text(snapshot.error.toString(),
-                            style: Theme.of(context).textTheme.headline2),
-                      );
-                    } else if (snapshot.connectionState ==
-                        ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (!snapshot.hasData) {
-                      return Center(
-                        child: Text("No Data",
-                            style: Theme.of(context).textTheme.headline2),
-                      );
-                    }
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => DetailCountryInfo(
-                                country: snapshot.data![index].country!,
-                                imageUrl: countryFlagList[index],
-                                infected: snapshot.data![index].infected,
-                                tested: snapshot.data![index].tested,
-                                recovered: snapshot.data![index].recovered,
-                                deceased: snapshot.data![index].deceased,
-                                countryDummyDataVariable:
-                                    countryDummyData[index],
-                              ),
-                            ));
-                          },
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.85,
-                            height: 75,
-                            child: Card(
-                                // color: Color.fromARGB(255, 226, 247, 250),
-                                child: ListTile(
-                              leading: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child: Image(
-                                    image: AssetImage(countryFlagList[index])),
-                              ),
-                              title: Text(snapshot.data![index].country!,
-                                  style: Theme.of(context).textTheme.headline1),
-                              trailing: Text(
-                                  snapshot.data![index].infected.toString(),
-                                  style: Theme.of(context).textTheme.headline1),
-                            )),
-                          ),
+              Expanded(
+                child: FutureBuilder<List<CovidModel>>(
+                    future: covidService.fetchCovidData(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString(),
+                              style: Theme.of(context).textTheme.headline2),
                         );
-                      },
-                    );
-                  }),
-            ),
-          ],
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (!snapshot.hasData) {
+                        return Center(
+                          child: Text("No Data",
+                              style: Theme.of(context).textTheme.headline2),
+                        );
+                      }
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => DetailCountryInfo(
+                                  country: snapshot.data![index].country!,
+                                  imageUrl: countryFlagList[index],
+                                  infected: snapshot.data![index].infected,
+                                  tested: snapshot.data![index].tested,
+                                  recovered: snapshot.data![index].recovered,
+                                  deceased: snapshot.data![index].deceased,
+                                  countryDummyDataVariable:
+                                      countryDummyData[index],
+                                ),
+                              ));
+                            },
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.85,
+                              height: 75,
+                              child: Card(
+                                  // color: Color.fromARGB(255, 226, 247, 250),
+                                  child: ListTile(
+                                leading: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: Image(
+                                      image:
+                                          AssetImage(countryFlagList[index])),
+                                ),
+                                title: Text(snapshot.data![index].country!,
+                                    style:
+                                        Theme.of(context).textTheme.headline1),
+                                trailing: Text(
+                                    snapshot.data![index].infected.toString(),
+                                    style:
+                                        Theme.of(context).textTheme.headline1),
+                              )),
+                            ),
+                          );
+                        },
+                      );
+                    }),
+              ),
+            ],
+          ),
         ),
       ),
     );
