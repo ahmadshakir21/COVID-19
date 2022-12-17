@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:covid_19/model/covid_19_dummy_data.dart';
+import 'package:covid_19/widget/cached_network_image_custom.dart';
 import 'package:covid_19/widget/top_of_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -28,23 +29,9 @@ class Covid19 extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            CachedNetworkImage(
-              imageUrl:
-                  'https://pbs.twimg.com/profile_images/945853318273761280/0U40alJG_400x400.jpg',
-              imageBuilder: (context, imageProvider) => Center(
-                child: Container(
-                  width: 150,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: imageProvider, fit: BoxFit.cover),
-                  ),
-                ),
-              ),
-              placeholder: (context, url) => const CircularProgressIndicator(),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            ),
+            CachedNetworkImageCustom(
+                imageUrl:
+                    "https://ichef.bbci.co.uk/news/976/cpsprodpb/1B58/production/_117500070_9db48266-1bb0-40c4-9c75-b6d2b06c30be.jpg"),
             const SizedBox(
               height: 15,
             ),
@@ -60,6 +47,12 @@ class Covid19 extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
+            CachedNetworkImageCustom(
+                imageUrl:
+                    "https://tse2.mm.bing.net/th?id=OIP.-MjeoTiaQAvZQHVTzkOazAHaE8&pid=Api&P=0"),
+            const SizedBox(
+              height: 15,
+            ),
             Text(Covid19Dummy.etymologyDis,
                 style: Theme.of(context).textTheme.bodyText1),
             const SizedBox(
@@ -69,6 +62,12 @@ class Covid19 extends StatelessWidget {
               Covid19Dummy.deaths,
               style: Theme.of(context).textTheme.headline1,
             ),
+            const SizedBox(
+              height: 15,
+            ),
+            CachedNetworkImageCustom(
+                imageUrl:
+                    "https://ichef.bbci.co.uk/news/1632/idt2/idt2/016656d2-a929-413a-a4df-19e6bfa3cd10/image/816"),
             const SizedBox(
               height: 15,
             ),
