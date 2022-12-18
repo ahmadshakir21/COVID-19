@@ -1,4 +1,5 @@
 import 'package:covid_19/firebase_options.dart';
+import 'package:covid_19/views/authentication/sign_in.dart';
 import 'package:covid_19/views/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
                 wordSpacing: 2,
                 color: Color(0xFF05445E)),
           )),
-      home: HomeScreen(),
+      home: SignIn(),
     );
   }
 }
