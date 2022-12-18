@@ -1,4 +1,5 @@
 import 'package:covid_19/firebase_options.dart';
+import 'package:covid_19/views/authentication/auth_screen.dart';
 import 'package:covid_19/views/authentication/sign_in.dart';
 import 'package:covid_19/views/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -13,6 +14,8 @@ void main() async {
   runApp(const MyApp());
 }
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -20,6 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      navigatorKey: navigatorKey,
       theme: ThemeData(
           fontFamily: GoogleFonts.amiko().fontFamily,
           textTheme: const TextTheme(
@@ -38,8 +42,9 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 wordSpacing: 2,
                 color: Color(0xFF05445E)),
+            bodyText2: TextStyle(color: Color(0xFF05445E)),
           )),
-      home: SignIn(),
+      home: AuthScreen(),
     );
   }
 }

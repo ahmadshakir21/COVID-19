@@ -1,6 +1,7 @@
 import 'package:covid_19/model/country_dummy_data.dart';
 import 'package:covid_19/model/covid_model.dart';
 import 'package:covid_19/service/covid_service.dart';
+import 'package:covid_19/views/authentication/auth.dart';
 import 'package:covid_19/views/covid_19.dart';
 import 'package:covid_19/views/detail_country_info.dart';
 import 'package:covid_19/views/rate_us.dart';
@@ -107,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        "ahmad.shakir@gmail.com",
+                        Auth().currentUser.toString(),
                         style: Theme.of(context).textTheme.headline1!.copyWith(
                             fontSize: 14, color: const Color(0xFFD4F1F4)),
                       ),
