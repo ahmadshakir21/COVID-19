@@ -14,7 +14,9 @@ class MainScreen extends StatelessWidget {
         stream: Auth().authStateChange,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
+            return CircularProgressIndicator(
+              color: Theme.of(context).progressIndicatorTheme.color,
+            );
           } else if (snapshot.hasError) {
             return Center(
                 child: Text(

@@ -31,11 +31,7 @@ class TopOfScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline1!
-                      .copyWith(fontSize: 20)),
+              Text(title, style: Theme.of(context).textTheme.headline1),
               Container(
                 height: 40,
                 width: 40,

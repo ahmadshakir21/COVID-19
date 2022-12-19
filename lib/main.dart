@@ -23,6 +23,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
       theme: ThemeData(
+          progressIndicatorTheme: const ProgressIndicatorThemeData(
+            color: Color(0xFF821D30),
+          ),
           fontFamily: GoogleFonts.amiko().fontFamily,
           textTheme: const TextTheme(
             headline1: TextStyle(
@@ -42,7 +45,7 @@ class MyApp extends StatelessWidget {
                 color: Color(0xFF05445E)),
             bodyText2: TextStyle(color: Color(0xFF05445E)),
           )),
-      home: MainScreen(),
+      home: const MainScreen(),
     );
   }
 }

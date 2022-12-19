@@ -1,6 +1,8 @@
+import 'package:covid_19/views/authentication/auth.dart';
+import 'package:covid_19/widget/top_of_screen.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ForgetPassword extends StatefulWidget {
   ForgetPassword({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class ForgetPassword extends StatefulWidget {
 
 class _ForgetPasswordState extends State<ForgetPassword> {
   final emailForForgetPasswordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -18,10 +21,10 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     super.dispose();
   }
 
-  Future resetPassword() async {
+  Future<void> resetPassword() async {
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(
-          email: emailForForgetPasswordController.text.trim());
+      await Auth()
+          .resetPassword(email: emailForForgetPasswordController.text.trim());
     } on FirebaseAuthException catch (e) {
       print(e);
     }
@@ -43,20 +46,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         },
                         icon: const Icon(
                           Icons.arrow_back_rounded,
-                          size: 30,
-                          color: Color(0xFF0B2E40),
+                          size: 35,
+                          color: Color(0xFF05445E),
                         )),
                     const SizedBox(
                       width: 65,
                     ),
-                    Text(
-                      "Forget Password",
-                      style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w600,
-                          color: const Color(0xFF0B2E40)),
-                    ),
+                    Text("Forget Password",
+                        style: Theme.of(context).textTheme.headline1),
                   ],
                 ),
                 const SizedBox(
@@ -65,26 +62,41 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 Text(
                   "Enter your email then click at reset password then change your password",
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xFF0B2E40)),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2!
+                      .copyWith(fontSize: 16),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10),
-                  child: TextField(
-                    controller: emailForForgetPasswordController,
-                    style: GoogleFonts.poppins(),
-                    decoration: InputDecoration(
+                  child: Form(
+                    key: formKey,
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (email) =>
+                          email != null && !EmailValidator.validate(email)
+                              ? 'Enter a valid email'
+                              : null,
+                      controller: emailForForgetPasswordController,
+                      style: Theme.of(context).textTheme.bodyText2,
+                      decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.alternate_email_rounded),
                         hintText: "Email",
-                        hintStyle: GoogleFonts.poppins(),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15))),
+                        errorStyle: const TextStyle(color: Color(0xFF821D30)),
+                        hintStyle: Theme.of(context).textTheme.bodyText2,
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Color(0xFF821D30), width: 2.0),
+                        ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Color(0xFF821D30), width: 2.0),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -96,14 +108,13 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   child: ElevatedButton(
                       onPressed: resetPassword,
                       style: ElevatedButton.styleFrom(
-                          primary: const Color(0xFF0B2E40)),
+                          primary: const Color(0xFF821D30)),
                       child: Text(
                         "Reset Password",
-                        style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline1!
+                            .copyWith(color: Colors.white),
                       )),
                 ),
               ])))),

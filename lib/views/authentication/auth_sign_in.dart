@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:covid_19/main.dart';
 import 'package:covid_19/views/authentication/auth.dart';
 import 'package:covid_19/views/authentication/forget_password.dart';
@@ -44,8 +42,9 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
+      builder: (context) => Center(
+        child: CircularProgressIndicator(
+            color: Theme.of(context).progressIndicatorTheme.color),
       ),
     );
     final isvalid = formKey.currentState!.validate();
@@ -114,14 +113,8 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
               Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Center(
-                    child: Text(
-                      "Welcome",
-                      style: GoogleFonts.poppins(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1,
-                          color: const Color(0xFF0B2E40)),
-                    ),
+                    child: Text("Welcome",
+                        style: Theme.of(context).textTheme.headline3),
                   )),
               const SizedBox(
                 height: 50,
@@ -142,12 +135,15 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
                                     ? 'Enter a valid email'
                                     : null,
                             controller: emailController,
-                            style: GoogleFonts.poppins(),
+                            style: Theme.of(context).textTheme.bodyText2,
                             decoration: InputDecoration(
-                                prefixIcon:
-                                    const Icon(Icons.alternate_email_rounded),
-                                hintText: "Email",
-                                hintStyle: GoogleFonts.poppins()),
+                              prefixIcon:
+                                  const Icon(Icons.alternate_email_rounded),
+                              hintText: "Email",
+                              errorStyle:
+                                  const TextStyle(color: Color(0xFF821D30)),
+                              hintStyle: Theme.of(context).textTheme.bodyText2,
+                            ),
                           ),
                         ),
                       ),
@@ -165,13 +161,16 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
                                     ? 'Enter min. 6 characters '
                                     : null,
                             controller: passwordController,
-                            style: GoogleFonts.poppins(),
+                            style: Theme.of(context).textTheme.bodyText2,
                             obscureText: true,
                             decoration: InputDecoration(
-                                prefixIcon:
-                                    const Icon(Icons.lock_outline_rounded),
-                                hintText: "Password",
-                                hintStyle: GoogleFonts.poppins()),
+                              prefixIcon:
+                                  const Icon(Icons.lock_outline_rounded),
+                              hintText: "Password",
+                              errorStyle:
+                                  const TextStyle(color: Color(0xFF821D30)),
+                              hintStyle: Theme.of(context).textTheme.bodyText2,
+                            ),
                           ),
                         ),
                       ),
@@ -188,11 +187,9 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
                     style: TextButton.styleFrom(primary: Colors.blue),
                     child: Text(
                       "Forget Password",
-                      style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: const Color(0xFF821D30)),
                     )),
               ),
               const SizedBox(
@@ -202,21 +199,17 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   height: 40,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: ElevatedButton(
-                      onPressed: signinWithEmailAndPassword,
-                      style: ElevatedButton.styleFrom(
-                        primary: const Color(0xFF0B2E40),
-                      ),
-                      child: Text(
-                        "SIGN IN",
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+                  child: ElevatedButton(
+                    onPressed: signinWithEmailAndPassword,
+                    style: ElevatedButton.styleFrom(
+                      primary: const Color(0xFF821D30),
+                    ),
+                    child: Text(
+                      "SIGN IN",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline1!
+                          .copyWith(color: Colors.white),
                     ),
                   ),
                 ),
@@ -228,21 +221,21 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
                 child: RichText(
                   text: TextSpan(
                       text: 'Don\'t have an account?',
-                      style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w500,
-                          color: const Color(0xFF0B2E40)),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(fontWeight: FontWeight.w600),
                       children: <TextSpan>[
                         TextSpan(
                           text: ' Sign up',
                           recognizer: TapGestureRecognizer()
                             ..onTap = widget.onClickedSignUp,
-                          style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              letterSpacing: 1,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.blue),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: const Color(0xFF821D30)),
                         )
                       ]),
                 ),

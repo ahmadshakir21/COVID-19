@@ -4,7 +4,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AuthenticationSignUp extends StatefulWidget {
   const AuthenticationSignUp({Key? key, required this.onClickedSignIn})
@@ -20,7 +19,8 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   final auth = FirebaseAuth.instance;
   final formKey = GlobalKey<FormState>();
@@ -30,7 +30,7 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
     userNameController.dispose();
     emailController.dispose();
     passwordController.dispose();
-    phoneNumberController.dispose();
+    confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -38,8 +38,9 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
+      builder: (context) => Center(
+        child: CircularProgressIndicator(
+            color: Theme.of(context).progressIndicatorTheme.color),
       ),
     );
     try {
@@ -67,26 +68,8 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
                 child: Center(
                   child: Text(
                     "Create Your Account",
-                    style: GoogleFonts.poppins(
-                        fontSize: 26,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xFF0B2E40)),
+                    style: Theme.of(context).textTheme.headline3,
                   ),
-                )),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15),
-                child: Text(
-                  "Please Enter Your Credentials in the Form Below..!",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      letterSpacing: 1,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xFF7E7B7B)),
                 )),
             const SizedBox(
               height: 50,
@@ -111,11 +94,12 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
                           return null;
                         },
                         controller: userNameController,
-                        style: GoogleFonts.poppins(),
+                        style: Theme.of(context).textTheme.bodyText2,
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.person),
                           hintText: "Username",
-                          hintStyle: GoogleFonts.poppins(),
+                          errorStyle: const TextStyle(color: Color(0xFF821D30)),
+                          hintStyle: Theme.of(context).textTheme.bodyText2,
                         ),
                       ),
                     ),
@@ -133,12 +117,13 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
                                 ? 'Enter a valid email'
                                 : null,
                         controller: emailController,
-                        style: GoogleFonts.poppins(),
+                        style: Theme.of(context).textTheme.bodyText2,
                         decoration: InputDecoration(
-                            prefixIcon:
-                                const Icon(Icons.alternate_email_rounded),
-                            hintText: "Email",
-                            hintStyle: GoogleFonts.poppins()),
+                          prefixIcon: const Icon(Icons.alternate_email_rounded),
+                          hintText: "Email",
+                          errorStyle: const TextStyle(color: Color(0xFF821D30)),
+                          hintStyle: Theme.of(context).textTheme.bodyText2,
+                        ),
                       ),
                     ),
                   ),
@@ -154,11 +139,35 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
                             ? 'Enter min. 6 characters '
                             : null,
                         controller: passwordController,
-                        style: GoogleFonts.poppins(),
+                        style: Theme.of(context).textTheme.bodyText2,
                         decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock_outline_rounded),
-                            hintText: "Password",
-                            hintStyle: GoogleFonts.poppins()),
+                          prefixIcon: const Icon(Icons.lock_outline_rounded),
+                          hintText: "Password",
+                          errorStyle: const TextStyle(color: Color(0xFF821D30)),
+                          hintStyle: Theme.of(context).textTheme.bodyText2,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Center(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) => value != null && value.length < 6
+                            ? 'Enter min. 6 characters '
+                            : null,
+                        controller: confirmPasswordController,
+                        style: Theme.of(context).textTheme.bodyText2,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.lock_outline_rounded),
+                          hintText: "Confirm Password",
+                          errorStyle: const TextStyle(color: Color(0xFF821D30)),
+                          hintStyle: Theme.of(context).textTheme.bodyText2,
+                        ),
                       ),
                     ),
                   ),
@@ -172,21 +181,17 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.9,
                 height: 40,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: ElevatedButton(
-                    onPressed: createUserWithEmailAndPassword,
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xFF0B2E40),
-                    ),
-                    child: Text(
-                      "SIGN UP",
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                child: ElevatedButton(
+                  onPressed: createUserWithEmailAndPassword,
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xFF821D30),
+                  ),
+                  child: Text(
+                    "SIGN UP",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline1!
+                        .copyWith(color: Colors.white),
                   ),
                 ),
               ),
@@ -198,21 +203,18 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
               child: RichText(
                   text: TextSpan(
                       text: 'Already have an Account?',
-                      style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w500,
-                          color: const Color(0xFF0B2E40)),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(fontWeight: FontWeight.w600),
                       children: <TextSpan>[
                     TextSpan(
                       text: ' Sign in',
                       recognizer: TapGestureRecognizer()
                         ..onTap = widget.onClickedSignIn,
-                      style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.blue),
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: const Color(0xFF821D30)),
                     )
                   ])),
             )
