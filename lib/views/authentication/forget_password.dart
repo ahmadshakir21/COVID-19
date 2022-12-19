@@ -70,30 +70,24 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 const SizedBox(
                   height: 30,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Form(
-                    key: formKey,
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (email) =>
-                          email != null && !EmailValidator.validate(email)
-                              ? 'Enter a valid email'
-                              : null,
-                      controller: emailForForgetPasswordController,
-                      style: Theme.of(context).textTheme.bodyText2,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.alternate_email_rounded),
-                        hintText: "Email",
-                        errorStyle: const TextStyle(color: Color(0xFF821D30)),
-                        hintStyle: Theme.of(context).textTheme.bodyText2,
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Color(0xFF821D30), width: 2.0),
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Color(0xFF821D30), width: 2.0),
+                Form(
+                  key: formKey,
+                  child: Center(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (email) =>
+                            email != null && !EmailValidator.validate(email)
+                                ? 'Enter a valid email'
+                                : null,
+                        controller: emailForForgetPasswordController,
+                        style: Theme.of(context).textTheme.bodyText2,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.alternate_email_rounded),
+                          hintText: "Email",
+                          errorStyle: const TextStyle(color: Color(0xFF821D30)),
+                          hintStyle: Theme.of(context).textTheme.bodyText2,
                         ),
                       ),
                     ),
@@ -103,7 +97,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   height: 75,
                 ),
                 Container(
-                  width: 250,
+                  width: MediaQuery.of(context).size.width * 0.65,
                   height: 40,
                   child: ElevatedButton(
                       onPressed: resetPassword,
