@@ -1,8 +1,8 @@
 import 'package:covid_19/views/authentication/auth.dart';
 import 'package:covid_19/views/authentication/auth_screen.dart';
 import 'package:covid_19/views/home_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -13,21 +13,18 @@ class MainScreen extends StatelessWidget {
       body: StreamBuilder<User?>(
         stream: Auth().authStateChange,
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return HomeScreen();
-          } else if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
           } else if (snapshot.hasError) {
             return Center(
-              child: Text(
-                "Error",
-                style: Theme.of(context).textTheme.headline2,
-              ),
-            );
+                child: Text(
+              "Something went wrong",
+              style: Theme.of(context).textTheme.headline2,
+            ));
+          } else if (snapshot.hasData) {
+            return HomeScreen();
           } else {
-            return AuthScreen();
+            return const AuthScreen();
           }
         },
       ),

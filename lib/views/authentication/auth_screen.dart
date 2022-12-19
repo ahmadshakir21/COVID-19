@@ -1,27 +1,28 @@
-import 'package:covid_19/views/authentication/sign_in.dart';
-import 'package:covid_19/views/authentication/sign_up.dart';
+import 'package:covid_19/views/authentication/auth_sign_in.dart';
+import 'package:covid_19/views/authentication/auth_sign_up.dart';
 import 'package:flutter/material.dart';
 
 class AuthScreen extends StatefulWidget {
+  const AuthScreen({Key? key}) : super(key: key);
+
   @override
   State<AuthScreen> createState() => _AuthScreenState();
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  bool isSignin = true;
-
+  bool isSignIn = true;
   @override
   Widget build(BuildContext context) {
     void toggle() {
       setState(() {
-        isSignin = !isSignin;
+        isSignIn = !isSignIn;
       });
     }
 
-    return isSignin
-        ? SignIn(onClickedSignUp: toggle)
-        : SignUp(
-            onClickSignIn: toggle,
+    return isSignIn
+        ? AuthenticationSignIn(onClickedSignUp: toggle)
+        : AuthenticationSignUp(
+            onClickedSignIn: toggle,
           );
   }
 }

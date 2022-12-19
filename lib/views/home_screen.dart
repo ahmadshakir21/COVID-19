@@ -108,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        Auth().currentUser.toString(),
+                        Auth().currentUser!.email.toString(),
                         style: Theme.of(context).textTheme.headline1!.copyWith(
                             fontSize: 14, color: const Color(0xFFD4F1F4)),
                       ),
@@ -136,7 +136,11 @@ class HomeScreen extends StatelessWidget {
                   ));
                 }),
             DrawerItem(
-                icon: Icons.logout_rounded, text: "Logout", onClick: () {}),
+                icon: Icons.logout_rounded,
+                text: "Logout",
+                onClick: () {
+                  Auth().signoutFunction();
+                }),
           ]),
         ),
         body: Padding(

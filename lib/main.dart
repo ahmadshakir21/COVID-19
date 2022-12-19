@@ -1,7 +1,5 @@
 import 'package:covid_19/firebase_options.dart';
-import 'package:covid_19/views/authentication/auth_screen.dart';
-import 'package:covid_19/views/authentication/sign_in.dart';
-import 'package:covid_19/views/home_screen.dart';
+import 'package:covid_19/views/authentication/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,7 +42,7 @@ class MyApp extends StatelessWidget {
                 color: Color(0xFF05445E)),
             bodyText2: TextStyle(color: Color(0xFF05445E)),
           )),
-      home: AuthScreen(),
+      home: MainScreen(),
     );
   }
 }
