@@ -217,13 +217,17 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
             ),
             Center(
                 child: SignInButton(Buttons.Google,
-                    text: "Sign up with Google", onPressed: () {})),
+                    text: "Sign up with Google",
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    onPressed: () {})),
             const SizedBox(
               height: 10,
             ),
             Center(
                 child: SignInButton(Buttons.Facebook,
-                    text: "Sign up with Facebook", onPressed: () {})),
+                    text: "Sign up with Facebook",
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    onPressed: () {})),
             const SizedBox(
               height: 40,
             ),

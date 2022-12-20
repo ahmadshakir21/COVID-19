@@ -6,6 +6,7 @@ import 'package:covid_19/views/covid_19.dart';
 import 'package:covid_19/views/detail_country_info.dart';
 import 'package:covid_19/views/rate_us.dart';
 import 'package:covid_19/widget/drawer_item.dart';
+import 'package:covid_19/widget/show_dialog_sign_out.dart';
 import 'package:covid_19/widget/top_of_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,13 @@ class HomeScreen extends StatelessWidget {
   CovidService covidService = CovidService();
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void showDailog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => const ShowDialogSignOut(),
+    );
+  }
 
   List countryFlagList = [
     "assets/images/algeria.png",
@@ -138,9 +146,7 @@ class HomeScreen extends StatelessWidget {
             DrawerItem(
                 icon: Icons.logout_rounded,
                 text: "Logout",
-                onClick: () {
-                  Auth().signoutFunction();
-                }),
+                onClick: () => showDailog(context)),
           ]),
         ),
         body: Padding(

@@ -1,13 +1,9 @@
-import 'package:covid_19/main.dart';
 import 'package:covid_19/views/authentication/auth.dart';
-import 'package:covid_19/views/authentication/forget_password.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AuthenticationSignIn extends StatefulWidget {
   const AuthenticationSignIn({Key? key, required this.onClickedSignUp})
@@ -168,24 +164,8 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
                       ),
                     ]),
               ),
-              ListTile(
-                trailing: TextButton(
-                    onPressed: () =>
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) {
-                            return ForgetPassword();
-                          },
-                        )),
-                    style: TextButton.styleFrom(primary: Colors.blue),
-                    child: Text(
-                      "Forget Password",
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: const Color(0xFF821D30)),
-                    )),
-              ),
               const SizedBox(
-                height: 50,
+                height: 75,
               ),
               Center(
                 child: Container(
@@ -207,7 +187,7 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
                 ),
               ),
               const SizedBox(
-                height: 40,
+                height: 50,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -232,13 +212,19 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
               const SizedBox(
                 height: 40,
               ),
-              Center(child: SignInButton(Buttons.Google, onPressed: () {})),
+              Center(
+                  child: SignInButton(Buttons.Google,
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      onPressed: () {})),
               const SizedBox(
                 height: 10,
               ),
-              Center(child: SignInButton(Buttons.Facebook, onPressed: () {})),
+              Center(
+                  child: SignInButton(Buttons.Facebook,
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      onPressed: () {})),
               const SizedBox(
-                height: 60,
+                height: 70,
               ),
               Center(
                 child: RichText(
