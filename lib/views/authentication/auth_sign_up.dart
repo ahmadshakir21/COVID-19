@@ -216,18 +216,50 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
               height: 30,
             ),
             Center(
-                child: SignInButton(Buttons.Google,
-                    text: "Sign up with Google",
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    onPressed: () {})),
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.50,
+                height: 35,
+                child: ElevatedButton(
+                  onPressed: createUserWithEmailAndPassword,
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xFF821D30),
+                  ),
+                  child: Row(children: [
+                    Text(
+                      "SIGN UP",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline1!
+                          .copyWith(color: Colors.white),
+                    ),
+                  ]),
+                ),
+              ),
+            ),
             const SizedBox(
               height: 10,
             ),
             Center(
-                child: SignInButton(Buttons.Facebook,
-                    text: "Sign up with Facebook",
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    onPressed: () {})),
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.50,
+                height: 35,
+                child: ElevatedButton(
+                  onPressed: createUserWithEmailAndPassword,
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xFF821D30),
+                  ),
+                  child: Row(children: [
+                    Text(
+                      "SIGN UP",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline1!
+                          .copyWith(color: Colors.white),
+                    ),
+                  ]),
+                ),
+              ),
+            ),
             const SizedBox(
               height: 40,
             ),

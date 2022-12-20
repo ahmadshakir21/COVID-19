@@ -45,6 +45,7 @@ dependencies:
   email_validator: ^2.1.17
   google_sign_in: ^5.4.2
   get: ^4.6.5
+  font_awesome_flutter: ^9.2.0
 
 dev_dependencies:
   flutter_test:

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenticationSignIn extends StatefulWidget {
   const AuthenticationSignIn({Key? key, required this.onClickedSignUp})
@@ -215,7 +216,9 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
               Center(
                   child: SignInButton(Buttons.Google,
                       padding: const EdgeInsets.symmetric(horizontal: 15),
-                      onPressed: () {})),
+                      onPressed: () {
+                // Auth().signInWithGoogle(context: context);
+              })),
               const SizedBox(
                 height: 10,
               ),
