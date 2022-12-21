@@ -1,5 +1,7 @@
+import 'package:covid_19/provider/google_sign_in_provider.dart';
 import 'package:covid_19/views/authentication/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ShowDialogSignOut extends StatelessWidget {
   const ShowDialogSignOut({Key? key}) : super(key: key);
@@ -64,6 +66,10 @@ class ShowDialogSignOut extends StatelessWidget {
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context);
+                        final provider = Provider.of<GoogleSignInProvider>(
+                            context,
+                            listen: false);
+                        provider.logoutGoogle();
                         Auth().signoutFunction();
                       },
                       style: ElevatedButton.styleFrom(

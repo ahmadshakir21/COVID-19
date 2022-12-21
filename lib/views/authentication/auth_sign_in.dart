@@ -1,10 +1,11 @@
+import 'package:covid_19/provider/google_sign_in_provider.dart';
 import 'package:covid_19/views/authentication/auth.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 class AuthenticationSignIn extends StatefulWidget {
   const AuthenticationSignIn({Key? key, required this.onClickedSignUp})
@@ -215,16 +216,21 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
               ),
               Center(
                   child: SignInButton(Buttons.Google,
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      text: "Google Sign in",
+                      padding: const EdgeInsets.symmetric(horizontal: 7),
                       onPressed: () {
-                // Auth().signInWithGoogle(context: context);
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
+
+                provider.googleLoign();
               })),
               const SizedBox(
                 height: 10,
               ),
               Center(
                   child: SignInButton(Buttons.Facebook,
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      text: "Facebook Sign in",
+                      padding: const EdgeInsets.symmetric(horizontal: 7),
                       onPressed: () {})),
               const SizedBox(
                 height: 70,

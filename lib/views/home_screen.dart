@@ -103,24 +103,34 @@ class HomeScreen extends StatelessWidget {
                           )),
                     ],
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Ahmad Shakir",
-                        style: Theme.of(context).textTheme.headline1!.copyWith(
-                            fontSize: 18, color: const Color(0xFFD4F1F4)),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        Auth().currentUser!.email.toString(),
-                        style: Theme.of(context).textTheme.headline1!.copyWith(
-                            fontSize: 14, color: const Color(0xFFD4F1F4)),
-                      ),
-                    ],
+                  SizedBox(
+                    width: 165,
+                    height: 120,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          Auth().currentUser!.displayName.toString(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline1!
+                              .copyWith(
+                                  fontSize: 18, color: const Color(0xFFD4F1F4)),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          Auth().currentUser!.email.toString(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline1!
+                              .copyWith(
+                                  fontSize: 14, color: const Color(0xFFD4F1F4)),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

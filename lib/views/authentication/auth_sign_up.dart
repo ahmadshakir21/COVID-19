@@ -6,6 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AuthenticationSignUp extends StatefulWidget {
   const AuthenticationSignUp({Key? key, required this.onClickedSignIn})
@@ -168,7 +169,7 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 70,
             ),
             Center(
               child: Container(
@@ -190,78 +191,7 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
               ),
             ),
             const SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    color: const Color(0xFF05445E)),
-                Text(
-                  "OR",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1!
-                      .copyWith(fontSize: 14.5, fontWeight: FontWeight.w700),
-                ),
-                Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    color: const Color(0xFF05445E))
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.50,
-                height: 35,
-                child: ElevatedButton(
-                  onPressed: createUserWithEmailAndPassword,
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color(0xFF821D30),
-                  ),
-                  child: Row(children: [
-                    Text(
-                      "SIGN UP",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline1!
-                          .copyWith(color: Colors.white),
-                    ),
-                  ]),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.50,
-                height: 35,
-                child: ElevatedButton(
-                  onPressed: createUserWithEmailAndPassword,
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color(0xFF821D30),
-                  ),
-                  child: Row(children: [
-                    Text(
-                      "SIGN UP",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline1!
-                          .copyWith(color: Colors.white),
-                    ),
-                  ]),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 40,
+              height: 180,
             ),
             Center(
               child: RichText(
