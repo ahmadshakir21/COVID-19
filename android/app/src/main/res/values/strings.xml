@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name"> COVID 19 </string>
+    <string name="facebook_app_id">843737503400915</string>
+    <string name="fb_login_protocol_scheme">fb843737503400915</string>
+    <string name="facebook_client_token">5b39840689a7f2af7d99f21e28f167c9</string>
+</resources>
