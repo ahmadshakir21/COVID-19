@@ -191,7 +191,7 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
                 ),
               ),
               const SizedBox(
-                height: 50,
+                height: 80,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -214,7 +214,7 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
                 ],
               ),
               const SizedBox(
-                height: 40,
+                height: 80,
               ),
               Center(
                 child: Container(
@@ -232,18 +232,21 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
                         provider.googleLoign();
                       },
                       style: ElevatedButton.styleFrom(
-                          primary: const Color(0xFFFFFAFA)),
+                          primary: const Color(0xFF05445E)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Padding(
                             padding: EdgeInsets.only(right: 20),
                             child: FaIcon(FontAwesomeIcons.google,
-                                color: Color(0xFF05445E)),
+                                color: Color(0xFFFFFAFA)),
                           ),
                           Text(
                             "Google Sign in",
-                            style: Theme.of(context).textTheme.headline1,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline1!
+                                .copyWith(color: Colors.white),
                           )
                         ],
                       )),

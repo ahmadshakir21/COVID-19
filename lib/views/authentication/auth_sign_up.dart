@@ -169,7 +169,7 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
               ),
             ),
             const SizedBox(
-              height: 70,
+              height: 100,
             ),
             Center(
               child: Container(
@@ -191,7 +191,7 @@ class _AuthenticationSignUpState extends State<AuthenticationSignUp> {
               ),
             ),
             const SizedBox(
-              height: 180,
+              height: 150,
             ),
             Center(
               child: RichText(

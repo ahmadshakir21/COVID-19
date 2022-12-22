@@ -15,7 +15,7 @@ class TopOfScreen extends StatelessWidget {
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
                 onTap: onClick,
@@ -31,15 +31,10 @@ class TopOfScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(title, style: Theme.of(context).textTheme.headline1),
-              Container(
-                height: 40,
-                width: 40,
-                margin: const EdgeInsets.only(right: 5),
-                decoration: BoxDecoration(
-                    color: const Color(0xFF05445E),
-                    borderRadius: BorderRadius.circular(10)),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.275,
               ),
+              Text(title, style: Theme.of(context).textTheme.headline1),
             ],
           ),
         ],

@@ -4,11 +4,11 @@ import 'package:covid_19/service/covid_service.dart';
 import 'package:covid_19/views/authentication/auth.dart';
 import 'package:covid_19/views/covid_19.dart';
 import 'package:covid_19/views/detail_country_info.dart';
-import 'package:covid_19/views/rate_us.dart';
 import 'package:covid_19/widget/drawer_item.dart';
 import 'package:covid_19/widget/show_dialog_sign_out.dart';
 import 'package:covid_19/widget/top_of_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
   CovidService covidService = CovidService();
@@ -84,24 +84,19 @@ class HomeScreen extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      Container(
-                        height: 85,
-                        width: 85,
-                        margin: const EdgeInsets.only(right: 10),
-                        decoration: BoxDecoration(
-                            color: const Color(0xFFD4F1F4),
-                            borderRadius: BorderRadius.circular(10)),
-                      ),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.add_box_rounded,
-                            color: Color(0xFF05445E),
-                          )),
-                    ],
+                  Container(
+                    height: 85,
+                    width: 85,
+                    margin: const EdgeInsets.only(right: 10),
+                    decoration: BoxDecoration(
+                        color: const Color(0xFFD4F1F4),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Center(
+                        child: Icon(
+                      Icons.person,
+                      size: 70,
+                      color: Color(0xFF05445E),
+                    )),
                   ),
                   SizedBox(
                     width: 165,
@@ -145,14 +140,7 @@ class HomeScreen extends StatelessWidget {
                     builder: (context) => const Covid19(),
                   ));
                 }),
-            DrawerItem(
-                icon: Icons.star_border_rounded,
-                text: "Rate Us",
-                onClick: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const RateUs(),
-                  ));
-                }),
+
             DrawerItem(
                 icon: Icons.logout_rounded,
                 text: "Logout",
