@@ -1,10 +1,12 @@
 import 'package:covid_19/provider/google_sign_in_provider.dart';
 import 'package:covid_19/views/authentication/auth.dart';
+import 'package:covid_19/views/home_screen.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class AuthenticationSignIn extends StatefulWidget {
@@ -215,23 +217,38 @@ class _AuthenticationSignInState extends State<AuthenticationSignIn> {
                 height: 40,
               ),
               Center(
-                  child: SignInButton(Buttons.Google,
-                      text: "Google Sign in",
-                      padding: const EdgeInsets.symmetric(horizontal: 7),
+                child: Container(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width * 0.65,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: ElevatedButton(
                       onPressed: () {
-                final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
+                        final provider = Provider.of<GoogleSignInProvider>(
+                            context,
+                            listen: false);
 
-                provider.googleLoign();
-              })),
-              const SizedBox(
-                height: 10,
+                        provider.googleLoign();
+                      },
+                      style: ElevatedButton.styleFrom(
+                          primary: const Color(0xFFFFFAFA)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(right: 20),
+                            child: FaIcon(FontAwesomeIcons.google,
+                                color: Color(0xFF05445E)),
+                          ),
+                          Text(
+                            "Google Sign in",
+                            style: Theme.of(context).textTheme.headline1,
+                          )
+                        ],
+                      )),
+                ),
               ),
-              Center(
-                  child: SignInButton(Buttons.Facebook,
-                      text: "Facebook Sign in",
-                      padding: const EdgeInsets.symmetric(horizontal: 7),
-                      onPressed: () {})),
               const SizedBox(
                 height: 70,
               ),
