@@ -1,16 +1,10 @@
-# covid_19
+# COVID 19
 
-A new Flutter project.
+Covid 19 app is about data of infected , recovered , tested and deceased of coutries around the world. this app was created by flutter and the backend is public api.
 
-## Getting Started
+## Future Version (insha allah)
+ 
+ adding search.
+ change null data to NA or 0
+ adding firebase_storage
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
