@@ -4,7 +4,7 @@ Covid 19 app is about data of infected , recovered , tested and deceased of cout
 
 ## Future Version (insha allah)
  
- adding search.
- change null data to NA or 0
- adding firebase_storage
+ adding search.\n
+ change null data to NA or 0\n
+ adding firebase_storage\n
 
